@@ -1,0 +1,1 @@
+Example store front to test intergration with Flexbase
