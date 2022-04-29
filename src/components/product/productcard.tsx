@@ -1,19 +1,31 @@
 import { Badge, Button, Card, Group, Image, Text, useMantineTheme } from "@mantine/core";
+import { v4 as uuidv4 } from 'uuid';
+import { useSetRecoilState } from "recoil";
+import IProduct from "../../entities/IProduct";
+import cartState from "../../state/cartState";
 
-interface Props {
-    image: string,
-    title: string,
-    price: number,
-    sku: string
-}
+const ProductCard = (product: IProduct) => {
 
-const ProductCard = (product: Props) => {
+    const setCartState = useSetRecoilState(cartState);
 
     const theme = useMantineTheme();
 
     const secondaryColor = theme.colorScheme === 'dark'
-      ? theme.colors.dark[1]
-      : theme.colors.gray[7];
+        ? theme.colors.dark[1]
+        : theme.colors.gray[7];
+
+    const addProduct = () => {
+        setCartState((oldCart) => [
+                ...oldCart,
+            {
+                id: uuidv4(),
+                image: product.image,
+                title: product.title,
+                price: product.price,
+                sku: product.sku
+            }]
+        );
+    };
 
     return (
         <Card shadow="md" p="lg">
@@ -30,7 +42,7 @@ const ProductCard = (product: Props) => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Text>
 
-            <Button fullWidth variant="light" color="blue" style={{ marginTop: 14 }}>Add to cart</Button>
+            <Button fullWidth variant="light" color="blue" style={{ marginTop: 14 }} onClick={addProduct}>Add to cart</Button>
         </Card>
 
     );

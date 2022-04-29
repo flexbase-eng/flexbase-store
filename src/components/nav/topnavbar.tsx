@@ -1,6 +1,8 @@
-import { Burger, Button, Container, createStyles, Group, Header, MediaQuery } from "@mantine/core";
+import { Burger, Button, Container, createStyles, Drawer, Group, Header, MediaQuery, useMantineTheme } from "@mantine/core";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import CartPage from "../../pages/cart/cart";
+import CartButton from "../cart/cartbutton";
 import INavLink from "./INavLink";
 
 const useStyles = createStyles((theme) => ({
@@ -21,7 +23,7 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-      },
+    },
 }));
 
 interface Props {
@@ -31,32 +33,47 @@ interface Props {
 const TopNavbar = (props: Props) => {
     const { classes } = useStyles();
     const [opened, setOpened] = useState(false);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const theme = useMantineTheme();
 
     return (
-        <Header height={60}>
-            <Container fluid className={classes.inner}>
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-                <Burger opened={opened} onClick={() => setOpened((o) => !o)} size="sm" mr="xl" />
-            </MediaQuery>
-            <Group spacing={5}>
-                <div className={classes.links}>
-                    {
-                        props.links.map(link => {
-                            return (
-                                <Button>
-                                    <NavLink to={link.path}>
-                                        {link.text}
-                                    </NavLink>
-                                </Button>
-                            );
-                        })
-                    }
-                </div>
-            </Group>
-            <Button>Login</Button>
-            </Container>
-        </Header>
-
+        <>
+            <Header height={60}>
+                <Container fluid className={classes.inner}>
+                    <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+                        <Burger opened={opened} onClick={() => setOpened((o) => !o)} size="sm" mr="xl" />
+                    </MediaQuery>
+                    <Group spacing={5}>
+                        <div className={classes.links}>
+                            {
+                                props.links.map(link => {
+                                    return (
+                                        <Button>
+                                            <NavLink to={link.path}>
+                                                {link.text}
+                                            </NavLink>
+                                        </Button>
+                                    );
+                                })
+                            }
+                        </div>
+                    </Group>
+                    <Group>
+                        <Button>Login</Button>
+                        <CartButton handleClick={() => setDrawerOpen(true)} />
+                    </Group>
+                </Container>
+            </Header>
+            <Drawer opened={drawerOpen} onClose={() => setDrawerOpen(false)} 
+                position="right"
+                padding="lg"
+                overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
+                overlayOpacity={0.55}
+                overlayBlur={3} >
+                <CartPage />
+            </Drawer>
+        </>
     );
 }
 

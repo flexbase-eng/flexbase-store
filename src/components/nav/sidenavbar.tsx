@@ -24,7 +24,7 @@ interface Props {
 const SideNavbar = (props: Props) => {
 
     const { classes } = useStyles();
-    const [opened, setOpened] = useState(false);
+    const [opened] = useState(false);
 
     return (
         <Navbar className={classes.navbar} width={{ base: "100%", sm: 0 }} hidden={!opened}>
