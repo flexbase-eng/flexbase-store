@@ -7,7 +7,7 @@ import { RecoilRoot } from 'recoil';
 function App() {
   return (
     <RecoilRoot>
-      <MantineProvider>
+      <MantineProvider theme={{colors:{'flexbase-orange':["#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745"]}}}>
         <BrowserRouter>
           <MainPage />
         </BrowserRouter>

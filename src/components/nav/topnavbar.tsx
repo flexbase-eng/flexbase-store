@@ -1,6 +1,6 @@
 import { Burger, Button, Container, createStyles, Drawer, Group, Header, MediaQuery, useMantineTheme } from "@mantine/core";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CartPage from "../../pages/cart/cart";
 import CartButton from "../cart/cartbutton";
 import INavLink from "./INavLink";
@@ -47,31 +47,25 @@ const TopNavbar = (props: Props) => {
                     <Group spacing={5}>
                         <div className={classes.links}>
                             {
-                                props.links.map(link => {
-                                    return (
-                                        <Button>
-                                            <NavLink to={link.path}>
-                                                {link.text}
-                                            </NavLink>
-                                        </Button>
-                                    );
-                                })
+                                props.links.map(link =>
+                                    <Button component={Link} to={link.path}> {link.text}</Button>
+                                )
                             }
                         </div>
                     </Group>
                     <Group>
-                        <Button>Login</Button>
+                        {/* <Button>Login</Button> */}
                         <CartButton handleClick={() => setDrawerOpen(true)} />
                     </Group>
                 </Container>
             </Header>
-            <Drawer opened={drawerOpen} onClose={() => setDrawerOpen(false)} 
+            <Drawer opened={drawerOpen} onClose={() => setDrawerOpen(false)}
                 position="right"
                 padding="lg"
                 overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
                 overlayOpacity={0.55}
                 overlayBlur={3} >
-                <CartPage />
+                <CartPage closeCart={() => setDrawerOpen(false)} />
             </Drawer>
         </>
     );
