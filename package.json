@@ -1,7 +1,7 @@
 {
   "name": "flexbase-store",
   "version": "0.1.0",
-  "homepage": "https://flexbase-eng.github.io/flexbase-store",
+  "homepage": "https://flexbase-eng.github.io/flexbase-store/",
   "private": true,
   "dependencies": {
     "@mantine/core": "^4.2.1",

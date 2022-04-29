@@ -9,7 +9,7 @@ import StorePage from "../store/store";
 const MainPage = () => {
 
     const links = [
-        { id: 1, text: "Products", path: "/" }
+        { id: 1, text: "Products", path: "/store" }
 
     ] as INavLink[];
 
@@ -19,8 +19,10 @@ const MainPage = () => {
                 main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
             })}>
             <Routes>
-                <Route path="/" element={<StorePage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/store" element={<StorePage />} />
+
+                <Route path="*" element={<StorePage />} />
             </Routes>
 
         </AppShell>
