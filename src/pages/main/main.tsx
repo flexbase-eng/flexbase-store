@@ -9,7 +9,7 @@ import StorePage from "../store/store";
 const MainPage = () => {
 
     const links = [
-        { id: 1, text: "Products", path: "/store" }
+        { id: 1, text: "Products", path: "/" }
 
     ] as INavLink[];
 
@@ -20,7 +20,7 @@ const MainPage = () => {
             })}>
             <Routes>
                 <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/store" element={<StorePage />} />
+                <Route path="/" element={<StorePage />} />
 
                 <Route path="*" element={<StorePage />} />
             </Routes>
