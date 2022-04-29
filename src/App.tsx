@@ -8,7 +8,7 @@ function App() {
   return (
     <RecoilRoot>
       <MantineProvider theme={{colors:{'flexbase-orange':["#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745","#ff5745"]}}}>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <MainPage />
         </BrowserRouter>
       </MantineProvider>
