@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v2
       - name: login to github packages
         run: |
-          npm config set @flexbase-eng:registry https://npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+          npm config set "https://npm.pkg.github.com/:_authToken" "${GITHUB_TOKEN}"
           npm config list
       - name: yarn install
         run: yarn install
