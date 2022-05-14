@@ -13,6 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
+      - name: .npmrc
+        run: |
+          echo "always-auth=true" >> ~/.npmrc
+          echo "@flexbase-eng:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ PACKAGE_TOKEN }}" >> ~/.npmrc 
       - name: yarn install
         run: yarn install
       - name: yarn deploy
