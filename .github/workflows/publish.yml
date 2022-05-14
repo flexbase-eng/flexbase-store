@@ -12,10 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - name: login to github packages
-        run: |
-          npm config set "https://npm.pkg.github.com/:_authToken" "${GITHUB_TOKEN}"
-          npm config list
       - name: yarn install
         run: yarn install
       - name: yarn deploy
