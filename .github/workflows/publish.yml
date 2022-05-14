@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "always-auth=true" >> ~/.npmrc
           echo "@flexbase-eng:registry=https://npm.pkg.github.com/" >> ~/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ PACKAGE_TOKEN }}" >> ~/.npmrc 
+          echo "//npm.pkg.github.com/:_authToken=${PACKAGE_TOKEN}" >> ~/.npmrc 
       - name: yarn install
         run: yarn install
       - name: yarn deploy
