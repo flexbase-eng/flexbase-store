@@ -1,11 +1,8 @@
 import { Card, Container, Divider, Group, Text, Space } from "@mantine/core";
 import { useRecoilValue } from "recoil";
 import cartState from "../../state/cartState";
-const PayWithFlexbase = require("@flexbase-eng/pay-with-flexbase.git");
 
 const CheckoutPage = () => {
-
-    window.customElements.define("pay-with-flexbase", PayWithFlexbase);
 
     const cart = useRecoilValue(cartState);
 
@@ -50,7 +47,7 @@ const CheckoutPage = () => {
                 <Space h="md" />
 
                 <Group position="right">
-                    <PayWithFlexbase apikey="fe" amount={total + tax} callback="/done" />
+                    <pay-with-flexbase apikey="fe" amount={(total + tax).toString()} callback="/done" session="session1"/>
                     {/* <Button variant="outline" color="flexbase-orange" rightIcon={<FlexbaseLogo height={25} fill="#ff5745" />}>
                         <Text size="xl">Pay with</Text>
                     </Button> */}
