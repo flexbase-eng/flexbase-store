@@ -1,6 +1,5 @@
-import { Button, Card, Container, Divider, Group, Text, Space } from "@mantine/core";
+import { Card, Container, Divider, Group, Text, Space } from "@mantine/core";
 import { useRecoilValue } from "recoil";
-import { ReactComponent as FlexbaseLogo } from "../../flexbase.svg"
 import cartState from "../../state/cartState";
 
 const CheckoutPage = () => {
@@ -48,9 +47,10 @@ const CheckoutPage = () => {
                 <Space h="md" />
 
                 <Group position="right">
-                    <Button variant="outline" color="flexbase-orange" rightIcon={<FlexbaseLogo height={25} fill="#ff5745" />}>
+                    <pay-with-flexbase apikey="067e554c-119f-4741-8697-e59a08e42f51" amount={(total + tax).toString()} callback="/paymentSuccess" session={`session${Date.now.toString()}`}/>
+                    {/* <Button variant="outline" color="flexbase-orange" rightIcon={<FlexbaseLogo height={25} fill="#ff5745" />}>
                         <Text size="xl">Pay with</Text>
-                    </Button>
+                    </Button> */}
                 </Group>
             </Card>
         </Container>
