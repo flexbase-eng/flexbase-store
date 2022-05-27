@@ -47,7 +47,7 @@ const CheckoutPage = () => {
                 <Space h="md" />
 
                 <Group position="right">
-                    <pay-with-flexbase apikey="067e554c-119f-4741-8697-e59a08e42f51" amount={(total + tax).toString()} callback="/paymentSuccess" session="testSession"/>
+                    {/*<pay-with-flexbase apikey="067e554c-119f-4741-8697-e59a08e42f51" amount={(total + tax).toString()} callback="/paymentSuccess" session="testSession"/>*/}
                     {/* <Button variant="outline" color="flexbase-orange" rightIcon={<FlexbaseLogo height={25} fill="#ff5745" />}>
                         <Text size="xl">Pay with</Text>
                     </Button> */}

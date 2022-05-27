@@ -1241,11 +1241,6 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@flexbase-eng/pay-with-flexbase@^0.1.0":
-  version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@flexbase-eng/pay-with-flexbase/0.1.0/b8eaf348f4af6bf1ea8680f2c6c262b1344b2e97846d848029dac5160ad41448#21d6f3c48d406f6e4c109d3f54ee5a3565857b6d"
-  integrity sha512-TSlCvV5EmBKOXHmC4C+JkgKZN4GvIi6jiK4ISiVHRKqtLyk+plOsAxNhssl0j/X3UlVhEG19xvSKEv75jlWzFA==
-
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"
