@@ -4,6 +4,7 @@ import INavLink from "../../components/nav/INavLink";
 import SideNavbar from "../../components/nav/sidenavbar";
 import TopNavbar from "../../components/nav/topnavbar";
 import CheckoutPage from "../checkout/checkout";
+import PaymentResultPage from "../paymentResult/paymentResult";
 import StorePage from "../store/store";
 
 const MainPage = () => {
@@ -23,6 +24,7 @@ const MainPage = () => {
                 <Route path="/" element={<StorePage />} />
 
                 <Route path="*" element={<StorePage />} />
+                <Route path="/paymentResult" element={<PaymentResultPage />} />
             </Routes>
 
         </AppShell>
