@@ -26,11 +26,13 @@ const SideNavbar = (props: Props) => {
     const { classes } = useStyles();
     const [opened] = useState(false);
 
+    let id = 0;
+
     return (
         <Navbar className={classes.navbar} width={{ base: "100%", sm: 0 }} hidden={!opened}>
             {props.links.map(link => {
                 return (
-                    <NavLink to={link.path}>
+                    <NavLink key="`${id++}`" to={link.path}>
                         {link.text}
                     </NavLink>
                 );

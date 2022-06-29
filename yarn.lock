@@ -1257,11 +1257,6 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@flexbase-eng/pay-with-flexbase@^0.1.0":
-  version "0.1.0"
-  resolved "https://npm.pkg.github.com/download/@flexbase-eng/pay-with-flexbase/0.1.0/c1d2db92282d97934d3d7120ab771ed095e78f15dbfc950a08885e5d58b0ffc2#5b861a3901e823fa83b54b98e1f54608329e263f"
-  integrity sha512-x7wQ13l+1wJyHew+7mfjJyazO6QpMzrvuiDyBCkknqi903okHOBHyf6sVhRRvKD/jMgFxoDwS++3quTpN6ozJg==
-
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"
@@ -6714,6 +6709,11 @@ path-type@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
+
+pay-with-flexbase@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/pay-with-flexbase/-/pay-with-flexbase-0.2.1.tgz#d9bfdfafe5526b8d10515a5d4e180a3fa9715e0b"
+  integrity sha512-uh251VixqBX+HljBlt2DSNPtLpUcTuc/pDSiD/3VMgQYDSACdK8ifSPCbmPPjby8TcVIdWKTbNIZaY/ofyBmMw==
 
 performance-now@^2.1.0:
   version "2.1.0"
