@@ -32,7 +32,7 @@ const SideNavbar = (props: Props) => {
         <Navbar className={classes.navbar} width={{ base: "100%", sm: 0 }} hidden={!opened}>
             {props.links.map(link => {
                 return (
-                    <NavLink key="`${id++}`" to={link.path}>
+                    <NavLink key={id++} to={link.path}>
                         {link.text}
                     </NavLink>
                 );

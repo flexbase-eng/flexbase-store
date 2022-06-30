@@ -50,7 +50,7 @@ const TopNavbar = (props: Props) => {
                         <div className={classes.links}>
                             {                               
                                 props.links.map(link =>
-                                    <Button key="`${id++}`" component={Link} to={link.path}> {link.text}</Button>
+                                    <Button key={id++} component={Link} to={link.path}> {link.text}</Button>
                                 )
                             }
                         </div>
