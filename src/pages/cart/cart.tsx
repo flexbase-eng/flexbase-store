@@ -24,7 +24,7 @@ const CartPage = (props: Props) => {
             {
                 cart.map(item => {
                     return (
-                        <CartCard title={item.title} image={item.image} sku={item.sku} price={item.price} id={item.id} />
+                        <CartCard key={item.id} title={item.title} image={item.image} sku={item.sku} price={item.price} id={item.id} />
                     );
                 })
             }

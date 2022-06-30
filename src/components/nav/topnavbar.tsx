@@ -37,6 +37,8 @@ const TopNavbar = (props: Props) => {
 
     const theme = useMantineTheme();
 
+    let id = 0;
+
     return (
         <>
             <Header height={60}>
@@ -46,9 +48,9 @@ const TopNavbar = (props: Props) => {
                     </MediaQuery>
                     <Group spacing={5}>
                         <div className={classes.links}>
-                            {
+                            {                               
                                 props.links.map(link =>
-                                    <Button component={Link} to={link.path}> {link.text}</Button>
+                                    <Button key="`${id++}`" component={Link} to={link.path}> {link.text}</Button>
                                 )
                             }
                         </div>
