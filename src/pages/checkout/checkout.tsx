@@ -48,7 +48,7 @@ const CheckoutPage = () => {
                 <Space h="md" />
 
                 <Group position="right"> 
-                    <pay-with-flexbase flexbaseDomain="https://dev.flexbase.app" apikey="067e554c-119f-4741-8697-e59a08e42f51" amount={(total + tax)} callback="/paymentResult" session="testSession"  />
+                    <pay-with-flexbase flexbaseDomain="https://dev-v2.flexbase.app" apikey="067e554c-119f-4741-8697-e59a08e42f51" amount={(total + tax)} callback="/paymentResult" session="testSession"  />
                 </Group>
             </Card>
         </Container>
