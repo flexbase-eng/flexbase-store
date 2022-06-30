@@ -21,10 +21,9 @@ const MainPage = () => {
             })}>
             <Routes>
                 <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/" element={<StorePage />} />
-
-                <Route path="*" element={<StorePage />} />
                 <Route path="/paymentResult" element={<PaymentResultPage />} />
+                <Route path="/" element={<StorePage />} />
+                <Route path="*" element={<StorePage />} />
             </Routes>
 
         </AppShell>
