@@ -1,21 +1,60 @@
-import { Card, Container, Divider, Group, Text, Space } from "@mantine/core";
+import {Card, Container, Divider, Group, Text, Space, LoadingOverlay} from "@mantine/core";
 import { useRecoilValue } from "recoil";
 import cartState from "../../state/cartState";
 import 'pay-with-flexbase';
+import {useEffect, useState} from "react";
+import {v4 as uuidv4} from "uuid";
+
+// const flexbaseUrl = 'http://localhost:3000';
+const flexbaseUrl = 'https://dev.flexbase.app';
 
 const CheckoutPage = () => {
-
+    const [working, setWorking] = useState(false);
+    const [total, setTotal] = useState(0);
+    const [subtotal, setSubtotal] = useState(0);
+    const [tax, setTax] = useState(0)
+    const [sessionId, setSessionId] = useState('');
     const cart = useRecoilValue(cartState);
 
-    let tax = 0;
-    let total = 0;
+    const holdTransaction = async (amount: number) => {
+        setWorking(true);
+        const session = uuidv4();
+        const baseUrl = 'https://dev-api.flexbase.app';
+        // const baseUrl = 'http://localhost:6543';
+        const requestBody = {
+            amount,
+            session,
+            description: 'An example transaction hold',
+            purchaseDate: new Date().toISOString(),
+            apiKey: '067e554c-119f-4741-8697-e59a08e42f51'
+        }
 
-    cart.forEach(item => total += item.price);
+        const result = await fetch(`${baseUrl}/credit/buyNow/hold`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            body: JSON.stringify(requestBody),
+        });
 
-    tax = total * 0.0975;
+        setWorking(false);
+
+        if ( result.ok ) {
+            setSessionId(session);
+        }
+    };
+
+    useEffect(() => {
+        const subtotal = cart.map(item => item.price).reduce((prev, curr) => curr + prev, 0);
+        setSubtotal(subtotal);
+        const taxAmount = subtotal * 0.0975;
+        setTax(taxAmount);
+        setTotal(subtotal + taxAmount);
+        holdTransaction(subtotal + taxAmount);
+
+    }, []);
 
     return (
         <Container size="sm">
+            <LoadingOverlay visible={working}/>
             <Card shadow="md" p="lg">
                 {
                     cart.map(item =>
@@ -30,7 +69,7 @@ const CheckoutPage = () => {
 
                 <Group position="apart">
                     <Text>Subtotal</Text>
-                    <Text>${total}</Text>
+                    <Text>${subtotal}</Text>
                 </Group>
 
                 <Group position="apart">
@@ -42,13 +81,13 @@ const CheckoutPage = () => {
 
                 <Group position="apart">
                     <Text size="xl">Total Due</Text>
-                    <Text size="xl">${total + tax}</Text>
+                    <Text size="xl">${total}</Text>
                 </Group>
 
                 <Space h="md" />
 
-                <Group position="right"> 
-                    <pay-with-flexbase flexbaseDomain="https://dev.flexbase.app" apikey="067e554c-119f-4741-8697-e59a08e42f51" amount={(total + tax)} callback="/paymentResult" session="testSession"  />
+                <Group position="right">
+                    {!working && <pay-with-flexbase flexbaseDomain={flexbaseUrl} apikey="067e554c-119f-4741-8697-e59a08e42f51" callback="/paymentResult" amount={total} session={sessionId}  />}
                 </Group>
             </Card>
         </Container>
