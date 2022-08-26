@@ -50,7 +50,7 @@ const CheckoutPage = () => {
         setTotal(subtotal + taxAmount);
         holdTransaction(subtotal + taxAmount);
 
-    }, []);
+    }, [cart]);
 
     return (
         <Container size="sm">
