@@ -11,8 +11,8 @@ const flexbaseUrl = 'https://dev.flexbase.app';
 const CheckoutPage = () => {
     const [working, setWorking] = useState(false);
     const [total, setTotal] = useState('');
-    const [subtotal, setSubtotal] = useState(0);
-    const [tax, setTax] = useState(0)
+    const [subtotal, setSubtotal] = useState('');
+    const [tax, setTax] = useState('')
     const [sessionId, setSessionId] = useState('');
     const cart = useRecoilValue(cartState);
 
@@ -46,8 +46,8 @@ const CheckoutPage = () => {
         const subtotal = cart.map(item => item.price).reduce((prev, curr) => curr + prev, 0);
         const taxAmount = subtotal * 0.0975;
         const finalAmount = (subtotal + taxAmount).toFixed(2);
-        setSubtotal(subtotal);
-        setTax(taxAmount);
+        setSubtotal(subtotal.toFixed(2));
+        setTax(taxAmount.toFixed(2));
         setTotal(finalAmount);
         holdTransaction(finalAmount);
 
