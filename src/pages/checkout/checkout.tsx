@@ -10,13 +10,13 @@ const flexbaseUrl = 'https://dev.flexbase.app';
 
 const CheckoutPage = () => {
     const [working, setWorking] = useState(false);
-    const [total, setTotal] = useState(0);
+    const [total, setTotal] = useState('');
     const [subtotal, setSubtotal] = useState(0);
     const [tax, setTax] = useState(0)
     const [sessionId, setSessionId] = useState('');
     const cart = useRecoilValue(cartState);
 
-    const holdTransaction = async (amount: number) => {
+    const holdTransaction = async (amount: string) => {
         setWorking(true);
         const session = uuidv4();
         const baseUrl = 'https://dev-api.flexbase.app';
@@ -44,11 +44,12 @@ const CheckoutPage = () => {
 
     useEffect(() => {
         const subtotal = cart.map(item => item.price).reduce((prev, curr) => curr + prev, 0);
-        setSubtotal(subtotal);
         const taxAmount = subtotal * 0.0975;
+        const finalAmount = (subtotal * taxAmount).toFixed(2);
+        setSubtotal(subtotal);
         setTax(taxAmount);
-        setTotal(subtotal + taxAmount);
-        holdTransaction(subtotal + taxAmount);
+        setTotal(finalAmount);
+        holdTransaction(finalAmount);
 
     }, [cart]);
 
@@ -87,7 +88,7 @@ const CheckoutPage = () => {
                 <Space h="md" />
 
                 <Group position="right">
-                    {!working && <pay-with-flexbase flexbaseDomain={flexbaseUrl} apikey="067e554c-119f-4741-8697-e59a08e42f51" callback="/paymentResult" amount={total} session={sessionId}  />}
+                    {!working && <pay-with-flexbase flexbaseDomain={flexbaseUrl} apikey="067e554c-119f-4741-8697-e59a08e42f51" callback="/paymentResult" amount={Number(total)} session={sessionId}  />}
                 </Group>
             </Card>
         </Container>
