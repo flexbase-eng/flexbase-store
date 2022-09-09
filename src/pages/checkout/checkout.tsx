@@ -45,7 +45,7 @@ const CheckoutPage = () => {
     useEffect(() => {
         const subtotal = cart.map(item => item.price).reduce((prev, curr) => curr + prev, 0);
         const taxAmount = subtotal * 0.0975;
-        const finalAmount = (subtotal * taxAmount).toFixed(2);
+        const finalAmount = (subtotal + taxAmount).toFixed(2);
         setSubtotal(subtotal);
         setTax(taxAmount);
         setTotal(finalAmount);
